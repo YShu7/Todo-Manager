@@ -1,0 +1,13 @@
+<%= f.label :text, "Your task" %><br>
+<%= f.text_area :text %><br>
+
+
+<%= f.collection_select(:group_id, Group.all, :id, :name) %>
+
+<% if @task.errors.any? %>
+	<ul>
+	<% @task.errors.full_messages.each do |msg| %>
+		<li> <%= msg %> </li>
+	<% end %>
+	</ul>
+<% end %>
