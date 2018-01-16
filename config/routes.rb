@@ -2,7 +2,7 @@ Rails.application.routes.draw do
     get 'welcome/index'
     resources :groups
     resources :tasks
-    get 'task' => 'group_tasks#index'
+    #get 'task' => 'group_tasks#index'
     resources :group_tasks
   root 'welcome#index'
 
