@@ -6,6 +6,9 @@
 
 <%= f.collection_select(:group_id, Group.all, :id, :name) %>
 
+<%= check_box_tag(:emergency) %>
+<%= label_tag(:emergency, "Emergency") %>
+
 <% if @task.errors.any? %>
 	<ul>
 	<% @task.errors.full_messages.each do |msg| %>
