@@ -6,6 +6,7 @@ class TasksController < ApplicationController
     end
     
     def show
+        @head = Group.find(@task.group_id).name
     end
     
     def new
@@ -18,6 +19,7 @@ class TasksController < ApplicationController
     def create
         @task = Task.new(task_params)
         @task.save
+        flash[:notice] = "Task was successfully added!"
         
         if @task.save
             redirect_to :action => :index
@@ -28,6 +30,7 @@ class TasksController < ApplicationController
     
     def update
         @task.update(task_params)
+        flash[:notice] = "Task was successfully updated!"
         if @task.save
             redirect_to :action => :show, :id => @task
         else
@@ -37,6 +40,7 @@ class TasksController < ApplicationController
     
     def destroy
         @task.destroy
+        flash[:alert] = "Task was successfully deleted!"
         
         redirect_to :action => :index
     end
