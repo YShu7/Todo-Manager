@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20180117092308) do
     t.datetime "updated_at", null: false
     t.integer "group_id"
     t.boolean "emergency"
-    t.string "ddl"
+    t.date "ddl"
   end
 
 end

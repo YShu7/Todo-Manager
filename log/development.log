@@ -11261,3 +11261,1217 @@ Migrating to AddDdlToTasks (20180117092308)
   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
   [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddDdlToTasks (20180117092308)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atasks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" text DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "group_id" integer DEFAULT NULL, "emergency" boolean DEFAULT NULL, "ddl" varchar DEFAULT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "atasks" ("id","text","created_at","updated_at","group_id","emergency","ddl")
+                     SELECT "id","text","created_at","updated_at","group_id","emergency","ddl" FROM "tasks"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "tasks"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" text DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "group_id" integer DEFAULT NULL, "emergency" boolean DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "tasks" ("id","text","created_at","updated_at","group_id","emergency")
+                     SELECT "id","text","created_at","updated_at","group_id","emergency" FROM "atasks"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "atasks"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20180117092308"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddDdlToTasks (20180117092308)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "tasks" ADD "ddl" date[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180117092308"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:09:05 +0800
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 307ms (Views: 289.8ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:09:06 +0800
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 94ms (Views: 50.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/tasks/19" for 127.0.0.1 at 2018-01-17 20:09:07 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"19"}
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 37ms (Views: 27.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:09:08 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 62ms (Views: 55.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:09:09 +0800
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 59ms (Views: 48.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tasks/8" for 127.0.0.1 at 2018-01-17 20:09:10 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 44ms (Views: 35.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:09:11 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 59ms (Views: 51.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/tasks/new" for 127.0.0.1 at 2018-01-17 20:09:13 +0800
+Processing by TasksController#new as HTML
+  Rendering tasks/new.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered tasks/_form.html.erb (18.5ms)
+  Rendered tasks/new.html.erb within layouts/application (23.2ms)
+Completed 200 OK in 56ms (Views: 49.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/tasks/new" for 127.0.0.1 at 2018-01-17 20:11:41 +0800
+  
+SyntaxError (/Users/ysq/Documents/GitHub/Todo-Manager/app/controllers/tasks_controller.rb:9: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+ew task["ddl(1i)"].to_i, task"ddl(2i)"].to_i, task["ddl(3i)"
+                              ^
+/Users/ysq/Documents/GitHub/Todo-Manager/app/controllers/tasks_controller.rb:9: syntax error, unexpected ']', expecting keyword_end
+ddl(1i)"].to_i, task"ddl(2i)"].to_i, task["ddl(3i)"].to_i
+                              ^
+/Users/ysq/Documents/GitHub/Todo-Manager/app/controllers/tasks_controller.rb:9: syntax error, unexpected '\n', expecting '='
+/Users/ysq/Documents/GitHub/Todo-Manager/app/controllers/tasks_controller.rb:54: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/controllers/tasks_controller.rb:9: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+app/controllers/tasks_controller.rb:9: syntax error, unexpected ']', expecting keyword_end
+app/controllers/tasks_controller.rb:9: syntax error, unexpected '\n', expecting '='
+app/controllers/tasks_controller.rb:54: syntax error, unexpected end-of-input, expecting keyword_end
+Started GET "/tasks/new" for 127.0.0.1 at 2018-01-17 20:11:55 +0800
+Processing by TasksController#new as HTML
+  Rendering tasks/new.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered tasks/_form.html.erb (9.6ms)
+  Rendered tasks/new.html.erb within layouts/application (13.6ms)
+Completed 200 OK in 62ms (Views: 47.8ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2018-01-17 20:12:00 +0800
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3T5xx4ieHZFl0pxNWnRpbgRjJk9v0dAfFMN2yKG4i84J0T8gAYnOPNRhol6jqRcF3wgUoR7qC/FdgB55saCQgQ==", "task"=>{"text"=>"dddd", "ddl(1i)"=>"2018", "ddl(2i)"=>"1", "ddl(3i)"=>"17", "group_id"=>"1"}, "commit"=>"Create"}
+Unpermitted parameters: :ddl(1i), :ddl(2i), :ddl(3i)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("text", "created_at", "updated_at", "group_id") VALUES (?, ?, ?, ?)[0m  [["text", "dddd"], ["created_at", "2018-01-17 12:12:00.788339"], ["updated_at", "2018-01-17 12:12:00.788339"], ["group_id", 1]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/tasks
+Completed 302 Found in 11ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/tasks" for 127.0.0.1 at 2018-01-17 20:12:00 +0800
+Processing by TasksController#index as HTML
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/index.html.erb within layouts/application (16.7ms)
+Completed 200 OK in 45ms (Views: 39.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:12:02 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 152ms (ActiveRecord: 0.6ms)
+
+
+  
+NameError (undefined local variable or method `task' for #<TasksController:0x00007fd0bd3208a8>
+Did you mean?  @task):
+  
+app/controllers/tasks_controller.rb:9:in `show'
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:12:19 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 2.3ms)
+
+
+  
+ArgumentError (invalid date):
+  
+app/controllers/tasks_controller.rb:9:in `new'
+app/controllers/tasks_controller.rb:9:in `show'
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:12:50 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 1.3ms)
+
+
+  
+NoMethodError (undefined method `div' for nil:NilClass):
+  
+app/controllers/tasks_controller.rb:9:in `new'
+app/controllers/tasks_controller.rb:9:in `show'
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:14:58 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 1.0ms)
+
+
+  
+ArgumentError (invalid date):
+  
+app/controllers/tasks_controller.rb:9:in `new'
+app/controllers/tasks_controller.rb:9:in `show'
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:16:13 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 1.3ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/tasks_controller.rb:10:in `show'
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:17:18 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 2.7ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/tasks_controller.rb:10:in `show'
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:18:13 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.9ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/tasks_controller.rb:10:in `show'
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:18:22 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 61ms (Views: 46.4ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:18:30 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 28ms (Views: 25.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:19:16 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  Rendered tasks/show.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 1.3ms)
+
+
+  
+SyntaxError (/Users/ysq/Documents/GitHub/Todo-Manager/app/views/tasks/show.html.erb:7: no .<digit> floating literal anymore; put 0 before dot
+put_buffer.append=( @task.ddl.1i );@output_buffer.safe_appen
+                              ^
+/Users/ysq/Documents/GitHub/Todo-Manager/app/views/tasks/show.html.erb:7: syntax error, unexpected tIMAGINARY, expecting '('
+t_buffer.append=( @task.ddl.1i );@output_buffer.safe_append=
+                              ^):
+  
+app/views/tasks/show.html.erb:7: no .<digit> floating literal anymore; put 0 before dot
+app/views/tasks/show.html.erb:7: syntax error, unexpected tIMAGINARY, expecting '('
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:25:30 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  Rendered tasks/show.html.erb within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.2ms)
+
+
+  
+SyntaxError (/Users/ysq/Documents/GitHub/Todo-Manager/app/views/tasks/show.html.erb:7: no .<digit> floating literal anymore; put 0 before dot
+put_buffer.append=( @task.ddl.1i );@output_buffer.safe_appen
+                              ^
+/Users/ysq/Documents/GitHub/Todo-Manager/app/views/tasks/show.html.erb:7: syntax error, unexpected tIMAGINARY, expecting '('
+t_buffer.append=( @task.ddl.1i );@output_buffer.safe_append=
+                              ^):
+  
+app/views/tasks/show.html.erb:7: no .<digit> floating literal anymore; put 0 before dot
+app/views/tasks/show.html.erb:7: syntax error, unexpected tIMAGINARY, expecting '('
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:25:40 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 52ms (Views: 48.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:25:42 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 61ms (Views: 51.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:25:43 +0800
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 40ms (Views: 30.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:25:44 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 40ms (Views: 33.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:26:34 +0800
+Processing by TasksController#show as HTML
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:26:34 +0800
+  Parameters: {"id"=>"20"}
+Processing by TasksController#show as HTML
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:26:34 +0800
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:26:34 +0800
+  Parameters: {"id"=>"20"}
+Processing by GroupTasksController#index as HTML
+Processing by WelcomeController#index as HTML
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  Parameters: {"id"=>"1"}
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered tasks/show.html.erb within layouts/application (14.1ms)
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+Completed 500 Internal Server Error in 50ms (ActiveRecord: 0.2ms)
+
+
+  Rendering tasks/show.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (13.4ms)
+  
+  Rendering group_tasks/index.html.erb within layouts/application
+  Rendered tasks/show.html.erb within layouts/application (2.7ms)
+ActionView::Template::Error (undefined method `[]' for nil:NilClass):
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+Completed 500 Internal Server Error in 59ms (ActiveRecord: 0.5ms)
+
+
+    4:   
+    5: 	<strong>Deadline:</strong>
+    6: 	
+    7: 	<%= Date.civil(params[:ddl][:year].to_i, params[:ddl][:month].to_i, params[:ddl][:day].to_i) %><br>
+    8: 
+    9: 	<strong>Group:</strong>
+   10: 	<%= Group.find(@task.group_id).name %><br>
+  Rendered group_tasks/index.html.erb within layouts/application (5.6ms)
+  
+  
+ActionView::Template::Error (undefined method `[]' for nil:NilClass):
+app/views/tasks/show.html.erb:7:in `_app_views_tasks_show_html_erb___1511078165953451704_70267215447020'
+    4:   
+    5: 	<strong>Deadline:</strong>
+    6: 	
+    7: 	<%= Date.civil(params[:ddl][:year].to_i, params[:ddl][:month].to_i, params[:ddl][:day].to_i) %><br>
+    8: 
+    9: 	<strong>Group:</strong>
+   10: 	<%= Group.find(@task.group_id).name %><br>
+  
+app/views/tasks/show.html.erb:7:in `_app_views_tasks_show_html_erb___1511078165953451704_70267215447020'
+Completed 200 OK in 222ms (Views: 217.4ms | ActiveRecord: 0.5ms)
+
+
+Completed 200 OK in 202ms (Views: 186.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:27:53 +0800
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/groups/1/tasks/9" for 127.0.0.1 at 2018-01-17 20:27:53 +0800
+  
+ActionController::RoutingError (No route matches [GET] "/groups/1/tasks/9"):
+  Rendering group_tasks/index.html.erb within layouts/application
+  
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendered group_tasks/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 56ms (Views: 52.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:27:54 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (1.5ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 48ms (Views: 39.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:28:34 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:28:34 +0800
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:28:34 +0800
+Processing by TasksController#show as HTML
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:28:34 +0800
+Processing by WelcomeController#index as HTML
+  Parameters: {"id"=>"20"}
+  Rendering tasks/show.html.erb within layouts/application
+Processing by GroupTasksController#index as HTML
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  Rendering welcome/index.html.erb within layouts/application
+  Parameters: {"id"=>"1"}
+  Rendered tasks/show.html.erb within layouts/application (2.9ms)
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 0.2ms)
+
+
+  Rendered welcome/index.html.erb within layouts/application (10.9ms)
+  
+  Rendered tasks/show.html.erb within layouts/application (6.7ms)
+  Rendering group_tasks/index.html.erb within layouts/application
+ActionView::Template::Error (wrong number of arguments (given 1, expected 0)):
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 0.2ms)
+
+
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+    4:   
+    5: 	<strong>Deadline:</strong>
+    6: 	
+    7: 	<%= @task.ddl(1i).to_s %><br>
+    8: 
+    9: 	<strong>Group:</strong>
+   10: 	<%= Group.find(@task.group_id).name %><br>
+  
+  Rendered group_tasks/index.html.erb within layouts/application (6.4ms)
+  
+ActionView::Template::Error (wrong number of arguments (given 1, expected 0)):
+app/views/tasks/show.html.erb:7:in `_app_views_tasks_show_html_erb___1511078165953451704_70267247945460'
+    4:   
+    5: 	<strong>Deadline:</strong>
+    6: 	
+    7: 	<%= @task.ddl(1i).to_s %><br>
+    8: 
+    9: 	<strong>Group:</strong>
+   10: 	<%= Group.find(@task.group_id).name %><br>
+  
+app/views/tasks/show.html.erb:7:in `_app_views_tasks_show_html_erb___1511078165953451704_70267247945460'
+Completed 200 OK in 134ms (Views: 130.3ms | ActiveRecord: 0.2ms)
+
+
+Completed 200 OK in 197ms (Views: 190.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:29:20 +0800
+Processing by TasksController#show as HTML
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:29:20 +0800
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:29:20 +0800
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Completed 400 Bad Request in 15ms (ActiveRecord: 1.2ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: ddl):
+  
+app/controllers/tasks_controller.rb:9:in `show'
+Processing by WelcomeController#index as HTML
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 87ms (Views: 78.7ms | ActiveRecord: 0.7ms)
+
+
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 117ms (Views: 37.7ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:29:30 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:29:30 +0800
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:29:30 +0800
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 51ms (Views: 31.6ms | ActiveRecord: 2.4ms)
+
+
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+Processing by WelcomeController#index as HTML
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 58ms (Views: 54.7ms | ActiveRecord: 0.8ms)
+
+
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (23.7ms)
+Completed 200 OK in 146ms (Views: 59.5ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:33:23 +0800
+Processing by TasksController#show as HTML
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:33:23 +0800
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:33:23 +0800
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:33:23 +0800
+  Parameters: {"id"=>"20"}
+Processing by WelcomeController#index as HTML
+Processing by TasksController#show as HTML
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (1.5ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (20.5ms)
+  Rendering tasks/show.html.erb within layouts/application
+  Rendering group_tasks/index.html.erb within layouts/application
+  Rendered tasks/show.html.erb within layouts/application (15.3ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+Completed 500 Internal Server Error in 141ms (ActiveRecord: 1.4ms)
+
+
+  Rendered group_tasks/index.html.erb within layouts/application (11.6ms)
+  Rendering tasks/show.html.erb within layouts/application
+  
+  Rendered tasks/show.html.erb within layouts/application (12.5ms)
+ActionView::Template::Error (undefined method `[]' for nil:NilClass):
+Completed 500 Internal Server Error in 228ms (ActiveRecord: 1.5ms)
+
+
+    3: 	<%= @task.text %><br>
+    4:   
+    5: 	<strong>Deadline:</strong>
+    6: 	<% ddl = params[:ddl][:year] %>
+    7: 	<%= @task.ddl %><br>
+    8: 
+    9: 	<strong>Group:</strong>
+  
+  
+ActionView::Template::Error (undefined method `[]' for nil:NilClass):
+app/views/tasks/show.html.erb:6:in `_app_views_tasks_show_html_erb___1511078165953451704_70267253440580'
+    3: 	<%= @task.text %><br>
+    4:   
+    5: 	<strong>Deadline:</strong>
+    6: 	<% ddl = params[:ddl][:year] %>
+    7: 	<%= @task.ddl %><br>
+    8: 
+    9: 	<strong>Group:</strong>
+  
+app/views/tasks/show.html.erb:6:in `_app_views_tasks_show_html_erb___1511078165953451704_70267253440580'
+Completed 200 OK in 448ms (Views: 346.8ms | ActiveRecord: 0.7ms)
+
+
+Completed 200 OK in 463ms (Views: 448.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:33:48 +0800
+Processing by TasksController#show as HTML
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:33:48 +0800
+  Parameters: {"id"=>"20"}
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:33:48 +0800
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 1.2ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/tasks_controller.rb:10:in `show'
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (18.3ms)
+Completed 200 OK in 93ms (Views: 75.2ms | ActiveRecord: 1.1ms)
+
+
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (14.9ms)
+Completed 200 OK in 60ms (Views: 51.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/tasks/20" for 127.0.0.1 at 2018-01-17 20:34:00 +0800
+Processing by TasksController#show as HTML
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:34:00 +0800
+  Parameters: {"id"=>"20"}
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 1.3ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/tasks_controller.rb:10:in `show'
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:34:01 +0800
+Processing by WelcomeController#index as HTML
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 79ms (Views: 66.3ms | ActiveRecord: 0.5ms)
+
+
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (14.7ms)
+Completed 200 OK in 127ms (Views: 40.0ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:34:13 +0800
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 43ms (Views: 37.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/group_tasks" for 127.0.0.1 at 2018-01-17 20:34:13 +0800
+Processing by GroupTasksController#index as HTML
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Group with 'id'=):
+  
+app/controllers/group_tasks_controller.rb:20:in `find_group'
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:34:17 +0800
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 63ms (Views: 57.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:34:19 +0800
+Processing by WelcomeController#index as HTML
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:34:19 +0800
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendering group_tasks/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (3.9ms)
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 92ms (Views: 89.0ms | ActiveRecord: 0.2ms)
+
+
+Completed 200 OK in 96ms (Views: 86.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tasks/new" for 127.0.0.1 at 2018-01-17 20:34:22 +0800
+Processing by TasksController#new as HTML
+  Rendering tasks/new.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered tasks/_form.html.erb (3.1ms)
+  Rendered tasks/new.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 46ms (Views: 41.1ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2018-01-17 20:34:26 +0800
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"N81aG7NtDBvuQRYWZEi8yNLoefLaJzMiAk+3p/eUSqX0I6KM4wDOXrDsCLeKmxh+zWow36EXeC9BDzXvNcXHTw==", "task"=>{"text"=>"ddd", "ddl(1i)"=>"2018", "ddl(2i)"=>"3", "ddl(3i)"=>"17", "group_id"=>"1"}, "commit"=>"Create"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("text", "created_at", "updated_at", "group_id", "ddl") VALUES (?, ?, ?, ?, ?)[0m  [["text", "ddd"], ["created_at", "2018-01-17 12:34:26.049514"], ["updated_at", "2018-01-17 12:34:26.049514"], ["group_id", 1], ["ddl", "2018-03-17"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/tasks
+Completed 302 Found in 13ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/tasks" for 127.0.0.1 at 2018-01-17 20:34:26 +0800
+Processing by TasksController#index as HTML
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/index.html.erb within layouts/application (29.8ms)
+Completed 200 OK in 63ms (Views: 58.8ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:34:27 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.7ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/tasks_controller.rb:10:in `show'
+Started GET "/tasks" for 127.0.0.1 at 2018-01-17 20:35:14 +0800
+Processing by TasksController#index as HTML
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:35:14 +0800
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/index.html.erb within layouts/application (45.1ms)
+Completed 200 OK in 85ms (Views: 79.8ms | ActiveRecord: 3.1ms)
+
+
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 106ms (Views: 95.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:35:15 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (1.7ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+Completed 400 Bad Request in 51ms (ActiveRecord: 5.9ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: ddl):
+  
+app/controllers/tasks_controller.rb:10:in `show'
+Started GET "/tasks" for 127.0.0.1 at 2018-01-17 20:35:24 +0800
+Processing by TasksController#index as HTML
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/index.html.erb within layouts/application (17.2ms)
+Completed 200 OK in 72ms (Views: 66.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/tasks/21/edit" for 127.0.0.1 at 2018-01-17 20:35:36 +0800
+Processing by TasksController#edit as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering tasks/edit.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered tasks/_form.html.erb (6.4ms)
+  Rendered tasks/edit.html.erb within layouts/application (15.3ms)
+Completed 200 OK in 69ms (Views: 58.9ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/tasks/21" for 127.0.0.1 at 2018-01-17 20:35:37 +0800
+Processing by TasksController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tNh6W0gj/QqIxwM8QE6RH4Rbqy7mln6TZdjYnvRKf1CXewnA3Ark5uGlOGGgiBrXctFn0vt8l0ykc3CRjONFdA==", "task"=>{"text"=>"ddd", "ddl(1i)"=>"2018", "ddl(2i)"=>"3", "ddl(3i)"=>"17", "group_id"=>"1"}, "commit"=>"Update", "id"=>"21"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/tasks/21
+Completed 302 Found in 7ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:35:37 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: ddl):
+  
+app/controllers/tasks_controller.rb:10:in `show'
+Started GET "/tasks/21/edit" for 127.0.0.1 at 2018-01-17 20:37:40 +0800
+Processing by TasksController#edit as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering tasks/edit.html.erb within layouts/application
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered tasks/_form.html.erb (5.9ms)
+  Rendered tasks/edit.html.erb within layouts/application (14.4ms)
+Completed 200 OK in 70ms (Views: 64.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tasks/21/edit" for 127.0.0.1 at 2018-01-17 20:40:19 +0800
+Processing by TasksController#edit as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering tasks/edit.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered tasks/_form.html.erb (2.8ms)
+  Rendered tasks/edit.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 34ms (Views: 31.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:42:07 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 54ms (Views: 51.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/tasks" for 127.0.0.1 at 2018-01-17 20:42:09 +0800
+Processing by TasksController#index as HTML
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/index.html.erb within layouts/application (17.2ms)
+Completed 200 OK in 63ms (Views: 56.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:42:10 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: ddl):
+  
+app/controllers/tasks_controller.rb:10:in `show'
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:42:30 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 55ms (Views: 39.9ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:42:32 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 47ms (Views: 41.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:45:48 +0800
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 50ms (Views: 34.5ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:45:49 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  Rendered tasks/show.html.erb within layouts/application (4.8ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `<' for nil:NilClass):
+    3: 	<%= @task.text %><br>
+    4:   
+    5: 	<strong>Deadline:</strong>
+    6: 	<%= Date.new @taskddl %><br>
+    7: 
+    8: 	<strong>Group:</strong>
+    9: 	<%= Group.find(@task.group_id).name %><br>
+  
+app/views/tasks/show.html.erb:6:in `new'
+app/views/tasks/show.html.erb:6:in `_app_views_tasks_show_html_erb___1511078165953451704_70267252729680'
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:46:06 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  Rendered tasks/show.html.erb within layouts/application (6.9ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `div' for Sun, 09 Feb 2031:Date):
+    3: 	<%= @task.text %><br>
+    4:   
+    5: 	<strong>Deadline:</strong>
+    6: 	<%= Date.new @task.ddl %><br>
+    7: 
+    8: 	<strong>Group:</strong>
+    9: 	<%= Group.find(@task.group_id).name %><br>
+  
+app/views/tasks/show.html.erb:6:in `new'
+app/views/tasks/show.html.erb:6:in `_app_views_tasks_show_html_erb___1511078165953451704_70267247912040'
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:46:44 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  Rendered tasks/show.html.erb within layouts/application (4.0ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `div' for Sun, 09 Feb 2031:Date):
+    3: 	<%= @task.text %><br>
+    4:   
+    5: 	<strong>Deadline:</strong>
+    6: 	<%= Date.new(@task.ddl) %><br>
+    7: 
+    8: 	<strong>Group:</strong>
+    9: 	<%= Group.find(@task.group_id).name %><br>
+  
+app/views/tasks/show.html.erb:6:in `new'
+app/views/tasks/show.html.erb:6:in `_app_views_tasks_show_html_erb___1511078165953451704_70267212235840'
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:48:30 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  Rendered tasks/show.html.erb within layouts/application (6.9ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `div' for Sun, 09 Feb 2031:Date):
+    3: 	<%= @task.text %><br>
+    4:   
+    5: 	<strong>Deadline:</strong>
+    6: 	<%= Date.civil(@task.ddl) %><br>
+    7: 
+    8: 	<strong>Group:</strong>
+    9: 	<%= Group.find(@task.group_id).name %><br>
+  
+app/views/tasks/show.html.erb:6:in `civil'
+app/views/tasks/show.html.erb:6:in `_app_views_tasks_show_html_erb___1511078165953451704_70267251164100'
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:49:09 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 1.4ms)
+
+
+  
+NoMethodError (undefined method `div' for Sun, 09 Feb 2031:Date):
+  
+app/controllers/tasks_controller.rb:9:in `civil'
+app/controllers/tasks_controller.rb:9:in `show'
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:52:11 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 46ms (Views: 40.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:52:13 +0800
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (14.5ms)
+Completed 200 OK in 100ms (Views: 86.6ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:52:14 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 74ms (ActiveRecord: 0.2ms)
+
+
+  
+NoMethodError (undefined method `Date' for #<TasksController:0x00007fd0b9eca6f8>
+Did you mean?  update):
+  
+app/controllers/tasks_controller.rb:9:in `show'
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:52:26 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.2ms)
+
+
+  
+NoMethodError (undefined method `div' for Sun, 09 Feb 2031:Date):
+  
+app/controllers/tasks_controller.rb:9:in `new'
+app/controllers/tasks_controller.rb:9:in `show'
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:59:30 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 79ms (Views: 50.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/group_tasks?id=1" for 127.0.0.1 at 2018-01-17 20:59:43 +0800
+Processing by GroupTasksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 1]]
+  Rendered group_tasks/index.html.erb within layouts/application (19.6ms)
+Completed 200 OK in 120ms (Views: 59.3ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/tasks/21" for 127.0.0.1 at 2018-01-17 20:59:45 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 51ms (Views: 41.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/tasks/19" for 127.0.0.1 at 2018-01-17 20:59:49 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"19"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 44ms (Views: 38.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-01-17 20:59:51 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered welcome/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 39ms (Views: 34.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/tasks/new" for 127.0.0.1 at 2018-01-17 20:59:52 +0800
+Processing by TasksController#new as HTML
+  Rendering tasks/new.html.erb within layouts/application
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered tasks/_form.html.erb (5.6ms)
+  Rendered tasks/new.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 45ms (Views: 40.6ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2018-01-17 20:59:55 +0800
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vCV3bfCXkH5EZ7FuPQpalD926muVEm5P+OydqCt1expNgPIgU9WDZEjaUfwuuRzVBmx5/UAEuLknAp9/f5+a+g==", "task"=>{"text"=>"d", "ddl(3i)"=>"17", "ddl(2i)"=>"1", "ddl(1i)"=>"2018", "group_id"=>"1"}, "commit"=>"Create"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("text", "created_at", "updated_at", "group_id", "ddl") VALUES (?, ?, ?, ?, ?)[0m  [["text", "d"], ["created_at", "2018-01-17 12:59:55.409693"], ["updated_at", "2018-01-17 12:59:55.409693"], ["group_id", 1], ["ddl", "2018-01-17"]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/tasks
+Completed 302 Found in 12ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/tasks" for 127.0.0.1 at 2018-01-17 20:59:55 +0800
+Processing by TasksController#index as HTML
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/index.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 60ms (Views: 55.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/tasks/22" for 127.0.0.1 at 2018-01-17 20:59:56 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"22"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 22], ["LIMIT", 1]]
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered tasks/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 39ms (Views: 33.0ms | ActiveRecord: 0.4ms)
+
+

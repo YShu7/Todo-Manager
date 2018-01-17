@@ -3,7 +3,7 @@
 	<%= @task.text %><br>
   
 	<strong>Deadline:</strong>
-	<%= @task.ddl.to_s %><br>
+	<%= @task.ddl %><br>
 
 	<strong>Group:</strong>
 	<%= Group.find(@task.group_id).name %><br>

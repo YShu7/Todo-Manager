@@ -1,8 +1,8 @@
 <%= f.label :text, "Your task" %><br>
 <%= f.text_area :text %><br>
 
-<%= f.label :deadline, "Deadline" %><br>
-<%= f.date_select :ddl %><br>
+<%= f.label :ddl, "Deadline" %><br>
+<%= f.date_select :ddl, :order => [:day, :month, :year] %><br>
 
 <%= f.collection_select(:group_id, Group.all, :id, :name) %>
 
