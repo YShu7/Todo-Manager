@@ -4,5 +4,9 @@ class GroupsController < ApplicationController
         @groups = Group.all
     end
     
-    
+    def overview
+        @tasks = Task.all
+    end
+        
+        
 end

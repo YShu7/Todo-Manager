@@ -3,10 +3,11 @@
 <ul>
 <% @groups.each do |group| %>
 	<li> 
-	<%= link_to group.name, :controller => "group_tasks", :action => "index", :id => group %> 
-	</li> <br>
+	<%= link_to group.name, group_tasks_path(group) %> 
+	</li>
+	<br>
 <% end %>
 </ul>
 
-<br><%= link_to 'View All', tasks_path %>
-<br><%= link_to 'Create', new_task_path %>
+<br><%= link_to 'View All', overview_groups_path %>
+<br><%= link_to 'Create', new_group_task_path(:group_id => 4) %>

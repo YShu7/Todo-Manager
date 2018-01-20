@@ -1,0 +1,13 @@
+
+<strong>Text:</strong>
+<%= @task.text %><br>
+  
+<strong>Deadline:</strong>
+<%= @task.ddl %><br>
+
+<strong>Group:</strong>
+<%= Group.find(@task.group_id).name %><br>
+
+<br>
+<%= link_to 'Homepage', root_path %>
+ 

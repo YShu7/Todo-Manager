@@ -4,13 +4,13 @@
 <% @tasks.each do |t| %>
 	<li>
 	<%= t.text %>
-	<%= link_to 'Show', task_path(t) %>
-	<%= link_to 'Edit', edit_task_path(t) %>
-	<%= link_to 'Delete', task_path(t), :method => :delete,
+	<%= link_to 'Show', group_task_path(@group, t) %>
+	<%= link_to 'Edit', edit_group_task_path(@group, t) %>
+	<%= link_to 'Delete', group_task_path(@group, t), :method => :delete,
 	    :data => {:confirm => "Are you sure?"} %>
 	</li>
 <% end %>
 </ol>
 
-<%= link_to 'Create', new_task_path %><br>
+<%= link_to 'Create', new_group_task_path %><br>
 <%= link_to 'Back', root_path %>
