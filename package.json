@@ -1,5 +1,7 @@
 {
   "name": "todo_manager",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "^4.0.0"
+  }
 }

@@ -1,10 +1,11 @@
 <%= f.label :text, "Your task" %><br>
-<%= f.text_area :text %><br>
+<%= f.text_area :text, class: "form-control" %><br>
 
 <%= f.label :ddl, "Deadline" %><br>
 <%= f.date_select :ddl, :order => [:day, :month, :year] %><br>
 
-<%= f.collection_select(:group_id, Group.all, :id, :name) %>
+<%= f.label :group, "Group" %><br>
+<%= f.collection_select(:group_id, Group.all, :id, :name) %><br>
 
 <%= check_box_tag(:emergency) %>
 <%= label_tag(:emergency, "Emergency") %>
