@@ -1,8 +1,8 @@
-<%= form_for ([@group, @task]), html: {class: "form"} do |f| %> 
+<%= form_for ([@group, @task]) do |f| %> 
 
-	<%= render :partial => 'form', :locals => {:f => f} %>
-	<%= f.submit "Create" %>
+	<%= render :partial => 'form', :locals => {:f => f} %><br>
+	<%= f.submit "Create", class: " btn btn-success" %>
 
 <% end %> 
 
-<%= link_to 'Homepage', root_path %>
+<%= link_to 'Homepage', root_path, class: " btn btn-primary" %>

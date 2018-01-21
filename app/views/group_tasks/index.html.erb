@@ -4,13 +4,15 @@
 <% @tasks.each do |t| %>
 	<li>
 	<%= t.text %>
-	<%= link_to 'Show', group_task_path(@group, t) %>
-	<%= link_to 'Edit', edit_group_task_path(@group, t) %>
+	<div class="btn-group" role="group">
+	<%= link_to 'Show', group_task_path(@group, t), class:"btn btn-info" %>
+	<%= link_to 'Edit', edit_group_task_path(@group, t), class:"btn btn-warning" %>
 	<%= link_to 'Delete', group_task_path(@group, t), :method => :delete,
-	    :data => {:confirm => "Are you sure?"} %>
+	    :data => {:confirm => "Are you sure?"}, class:"btn btn-danger" %>
+	</div>
 	</li>
 <% end %>
 </ol>
 
-<%= link_to 'Create', new_group_task_path %><br>
-<%= link_to 'Back', root_path %>
+<%= link_to 'Create', new_group_task_path, class:"btn btn-success" %><br>
+<%= link_to 'Back', root_path, class:"btn btn-primary" %>

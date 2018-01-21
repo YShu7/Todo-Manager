@@ -9,8 +9,16 @@
   </head>
 
   <body>
-  	<p style = "color: green"><%=flash[:notice]%></p>
-  	<p style = "color: red"><%=flash[:alert]%></p>
-    <%= yield %>
+    <p style = "color: green"><%=flash[:notice]%></p>
+    <p style = "color: red"><%=flash[:alert]%></p>
+    <div id="main-container" class="container">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+        <%= yield %>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
   </body>
 </html>
