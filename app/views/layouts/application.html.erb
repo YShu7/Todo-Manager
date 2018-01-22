@@ -1,23 +1,63 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= @head || "TodoManager" %></title>
+    <title><%= @head || "Todo Manager" %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      #header {
+        background-color: #157efb;
+        color: white;
+        text-align: left;
+        padding: 5px;
+        line-height: 60px;
+        font-size: 50px;
+        font-family: 'Arial Black', Gadget, sans-serif;
+        text-align: center;
+        font-variant: small-caps;
+      }
+      #pageTitle {
+        text-align: center;
+        color: #157efb;
+        font-family: 'Arial Black', Gadget, sans-serif;
+        font-variant: small-caps;
+      }
+      #text {
+        line-height: 60px;
+      }
+      #details {
+        line-height: 60px;
+        text-align: center;
+        font-size: 30px;
+      }
+      #alert {
+        color: red;
+        text-align: center;
+        font-family: 'Arial Black', Gadget, sans-serif;
+      }
+      #notice {
+        color: green;
+        text-align: center;
+        font-family: 'Arial Black', Gadget, sans-serif;
+      }
+    </style>
   </head>
 
   <body>
-    <p style = "color: green"><%=flash[:notice]%></p>
-    <p style = "color: red"><%=flash[:alert]%></p>
-    <div id="main-container" class="container">
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
+    <div id="main-container" class="container-fluid" >
+      <div class="row"> 
+        <div class="col-md-12" id="header"> Todo Manager </div>
+      </div>
+      <p id="notice"><%=flash[:notice]%></p>
+      <p id="alert"><%=flash[:alert]%></p>
+      <div class="row" style="text-align:center">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
         <%= yield %>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
       </div>
     </div>
   </body>

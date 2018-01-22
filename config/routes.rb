@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
     resources :groups do
-        resources :tasks, :controller => 'group_tasks'
+        resources :tasks, :controller => 'group_tasks' do
+            collection do
+                post :bulk_destroy
+            end
+        end
         collection do
             get "overview" => "groups#overview"
         end

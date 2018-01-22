@@ -1,11 +1,12 @@
-<h1>Todo Manager</h1>
+<h1 id="pageTitle">Groups</h1>
 
-<div class="list-group">
+<div style="font-family: 'Arial Black', Gadget, sans-serif">
 <% @groups.each do |group| %>
-	<%= link_to group.name, group_tasks_path(group), class: "btn btn-default" %> 
+	<%= link_to group.name, group_tasks_path(group), class: "btn btn-default btn-block" %> 
 	<br>
 <% end %>
 </div>
 
-<br><%= link_to 'View All', overview_groups_path, class: "btn btn-primary" %>
-<br><%= link_to 'Create', new_group_task_path(:group_id => 4), class: "btn btn-success"%>
+<br><%= link_to 'View All Tasks', overview_groups_path, class: "btn btn-primary btn-block" %>
+<br><%= link_to 'Create a New Group', new_group_path, class: "btn btn-success btn-block"%>
+<br><%= link_to 'Create a New Task', new_group_task_path(:group_id => 4), class: "btn btn-success btn-block"%>

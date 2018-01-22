@@ -7,7 +7,7 @@
 <%= f.label :group, "Group" %><br>
 <%= f.collection_select(:group_id, Group.all, :id, :name, class: "form-control") %><br>
 
-<%= check_box_tag(:emergency, class: "form-control") %>
+<%= check_box_tag :emergency, "yes" %>
 <%= label_tag(:emergency, "Emergency") %>
 
 <% if @task.errors.any? %>

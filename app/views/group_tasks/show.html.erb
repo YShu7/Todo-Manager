@@ -1,13 +1,14 @@
-
+<div id="details">
 <strong>Text:</strong>
 <%= @task.text %><br>
-  
+
 <strong>Deadline:</strong>
 <%= @task.ddl %><br>
 
 <strong>Group:</strong>
 <%= Group.find(@task.group_id).name %><br>
+</div>
 
 <br>
-<%= link_to 'Homepage', root_path, class: " btn btn-primary" %>
+<%= link_to 'Homepage', root_path, class: "btn btn-primary btn-block" %>
  

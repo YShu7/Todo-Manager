@@ -43,6 +43,13 @@ class GroupTasksController < ApplicationController
         redirect_to :action => :index
     end
     
+    def bulk_destroy
+        @tasks = @group.tasks
+        @tasks.destroy
+        
+        redirect_to :action => :index
+    end
+    
     private
     
     def task_params
