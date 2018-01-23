@@ -42,6 +42,25 @@
         text-align: center;
         font-family: 'Arial Black', Gadget, sans-serif;
       }
+      #form_head {
+        color: #157efb;
+        line-height: 20px;
+        font-size: 20px;
+        position: relative;
+        bottom: -20px;
+        font-family: 'Arial Black', Gadget, sans-serif;
+      }
+      #e1 {
+        width:100%;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        appearance:none;
+        -moz-appearance:none;
+        -webkit-appearance:none;
+        background:url(img/arrow.jpg) no-repeat right center;
+        background-color: green;
+        background-size:20%;
+      }
     </style>
   </head>
 
@@ -50,6 +69,31 @@
       <div class="row"> 
         <div class="col-md-12" id="header"> Todo Manager </div>
       </div>
+      <div class="row" style="text-align:center">
+        <div class="col-md-12">
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <div class="navbar-brand", id="header">
+                <%= link_to "Todo-Manager", root_path %>
+              </div>
+            </div>
+              <ul class="nav navbar-nav">
+                <% @groups.each do |g| %>
+                  <li><%= link_to g.name, group_tasks_path(g) %></li>
+                <%end%>
+              </ul>
+            
+            <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                  <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div>
       <p id="notice"><%=flash[:notice]%></p>
       <p id="alert"><%=flash[:alert]%></p>
       <div class="row" style="text-align:center">

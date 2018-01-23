@@ -32,7 +32,9 @@ class GroupsController < ApplicationController
     def destroy
         @group.destroy
         
-        redirect_to group_tasks_path(@group.id)
+        flash[:alert] = "Group" + @group.name + "was successfully deleted!"
+        
+        redirect_to root_path
     end
     
     private

@@ -2,6 +2,7 @@
   "name": "todo_manager",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.0.0"
+    "bootstrap": "^4.0.0",
+    "select2-bootstrap-theme": "0.1.0-beta.10"
   }
 }

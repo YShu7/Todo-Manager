@@ -1,6 +1,6 @@
 class GroupTasksController < ApplicationController
     # index, show, new, edit, create, update and destroy.
-    before_action :set_group, :except => :overview
+    before_action :set_group, :except => :bulk_destroy
     before_action :set_task, :only => [:show, :edit, :update, :destroy]
     
     def index
@@ -44,10 +44,11 @@ class GroupTasksController < ApplicationController
     end
     
     def bulk_destroy
-        @tasks = @group.tasks
-        @tasks.destroy
+        ids = Array(params[:ids])
+        tasks = ids.map{|id| Task.find_by_id(id)}
+        tasks.each{ |t| t.destroy}
         
-        redirect_to :action => :index
+        redirect_to overview_groups_path
     end
     
     private
@@ -57,6 +58,7 @@ class GroupTasksController < ApplicationController
     end
     
     def set_group
+        @groups = Group.all
         @group = Group.find(params[:group_id])
         @head = @group.name
     end

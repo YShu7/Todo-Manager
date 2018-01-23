@@ -14,6 +14,7 @@
 //= require rails-ujs
 //= require turbolinks
 //= require bootstrap
+//= require dropdown
 //= require select2
 //= require_tree .
 

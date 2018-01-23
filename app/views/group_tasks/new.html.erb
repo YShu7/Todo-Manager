@@ -1,3 +1,5 @@
+<link href="path/to/select2.min.css" rel="stylesheet" />
+<script src="path/to/select2.min.js"></script>
 <%= form_for [@group, @task] do |f| %> 
 
 	<%= render :partial => 'form', :locals => {:f => f} %><br>
@@ -6,4 +8,4 @@
 
 <% end %> 
 
-<br><%= link_to 'Homepage', root_path, class: " btn btn-primary btn-block" %>
+<br><%= link_to 'Back', group_tasks_path(@group), class: " btn btn-primary btn-block" %>
