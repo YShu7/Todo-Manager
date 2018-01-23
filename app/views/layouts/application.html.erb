@@ -69,31 +69,30 @@
       <div class="row"> 
         <div class="col-md-12" id="header"> Todo Manager </div>
       </div>
-      <div class="row" style="text-align:center">
-        <div class="col-md-12">
-        <nav class="navbar navbar-default" role="navigation">
-          <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12" id="pageTitle">
+        <nav class="navbar navbar-default container-fluid" role="navigation">
             <div class="navbar-header">
-              <div class="navbar-brand", id="header">
+              <div class="navbar-brand">
                 <%= link_to "Todo-Manager", root_path %>
               </div>
             </div>
-              <ul class="nav navbar-nav">
-                <% @groups.each do |g| %>
+              <% @groups.each do |g| %>
+                <ul class="nav navbar-nav">
                   <li><%= link_to g.name, group_tasks_path(g) %></li>
-                <%end%>
-              </ul>
+                </ul>
+              <%end%>
             
-            <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
+            <form class="navbar-form" role="search">
+              <div class="form-inline">
+                  <input type="text" class="form-control" placeholder="Search">
                   <button type="submit" class="btn btn-primary">Search</button>
+              </div>
             </form>
-          </div>
-        </nav>
+
+          </nav>
+        </div>
       </div>
-    </div>
       <p id="notice"><%=flash[:notice]%></p>
       <p id="alert"><%=flash[:alert]%></p>
       <div class="row" style="text-align:center">
