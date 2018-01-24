@@ -3,6 +3,8 @@ Rails.application.routes.draw do
         resources :tasks, :controller => 'group_tasks' do
             collection do
                 post :bulk_destroy
+                get :search
+                #match "search" => "group_tasks#search", via: [:get, :post], as: :search
             end
         end
         collection do

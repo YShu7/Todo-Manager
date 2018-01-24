@@ -84,8 +84,13 @@
             
             <form class="navbar-form" role="search">
               <div class="form-inline">
-                  <input type="text" class="form-control" placeholder="Search">
-                  <button type="submit" class="btn btn-primary">Search</button>
+                <%= form_tag search_group_tasks_path(group_id: 3), :method => :get, :target => "/groups/3/tasks/search" do %>
+                  <input type="text" name="q" value="<%= params[:q] %>" placeholder="Search Task" class="form-control">
+                  <!--button class="btn btn-primary" type="submit">
+                    Search
+                  </button-->
+                  <%= submit_tag "Search", class: "btn btn-primary" %>
+                <%end%>
               </div>
             </form>
 

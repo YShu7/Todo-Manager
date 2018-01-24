@@ -1,12 +1,13 @@
 class GroupsController < ApplicationController
     # index, show, new, edit, create, update and destroy
     before_action :set_group, :only => [:edit, :update, :destroy]
-    before_action :set_groups
+    before_action :set_groups_and_search
     def index
         @groups = Group.all
     end
     
     def overview
+        @q = Task.ransack(params[:q])
         @tasks = Task.all
     end
     
@@ -31,9 +32,12 @@ class GroupsController < ApplicationController
     end
     
     def destroy
-        @group.destroy
-        
-        flash[:alert] = "Group" + @group.name + "was successfully deleted!"
+        if @group.id == 3
+            flash[:alert] = "Group " + @group.name + " cannot be deleted."
+        else
+            @group.destroy
+            flash[:alert] = "Group " + @group.name + " was successfully deleted!"
+        end
         
         redirect_to root_path
     end
@@ -48,7 +52,8 @@ class GroupsController < ApplicationController
         params.require(:group).permit(:name)
     end
     
-    def set_groups
+    def set_groups_and_search
         @groups = Group.all
+        @q = Task.ransack(params[:q])
     end
 end

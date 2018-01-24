@@ -11,7 +11,7 @@ gem 'less-rails', '~> 3.0'
 gem "twitter-bootstrap-rails"
 
 gem 'bootstrap'
-gem 'sprockets', '~> 3.7', '>= 3.7.1'
+gem 'ransack', '~> 1.8', '>= 1.8.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
