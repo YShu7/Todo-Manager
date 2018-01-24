@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default" role="navigation">
+  
+  <div class="navbar-header">
+    <div class="navbar-brand">
+      <%= link_to "Todo-Manager", root_path %>
+    </div>
+  </div>
+  
+  <% @groups.each do |g| %>
+    <ul class="nav navbar-nav">
+      <li><%= link_to g.name, group_tasks_path(g) %></li>
+    </ul>
+  <%end%>
+  
+  <div class="form-inline">
+    <%= form_tag url_for(:action=>:search,:controller=>:groups), :method => :get do %>
+      <%= search_field_tag :q, params[:q], placeholder: "Search tasks", class: "form-control" %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <%end%>
+  </div>
+
+</nav>

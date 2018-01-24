@@ -3,7 +3,7 @@ class GroupTasksController < ApplicationController
     before_action :set_group, :except => :bulk_destroy
     before_action :set_task, :only => [:show, :edit, :update, :destroy]
     before_action :set_search
-    
+
     def index
         @tasks = @group.tasks
     end
@@ -50,14 +50,6 @@ class GroupTasksController < ApplicationController
         tasks.each{ |t| t.destroy}
         
         redirect_to overview_groups_path
-    end
-    
-    def search
-        @q = params[:q] if params[:q].present?
-        @search_criteria = {text_cont: @q}
-        if @q.present?
-            @tasks = Task.ransack(@search_criteria).result(:distinct => true)
-        end
     end
     
     private

@@ -65,40 +65,16 @@
 
   <body>
     <div id="main-container" class="container-fluid" >
+      <p id="notice"><%=flash[:notice]%></p>
+      <p id="alert"><%=flash[:alert]%></p>
       <div class="row"> 
         <div class="col-md-12" id="header"> Todo Manager </div>
       </div>
-      <div class="row">
-        <div class="col-md-12 container-fluid" id="pageTitle">
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="navbar-header">
-              <div class="navbar-brand">
-                <%= link_to "Todo-Manager", root_path %>
-              </div>
-            </div>
-              <% @groups.each do |g| %>
-                <ul class="nav navbar-nav">
-                  <li><%= link_to g.name, group_tasks_path(g) %></li>
-                </ul>
-              <%end%>
-            
-            <form class="navbar-form" role="search">
-              <div class="form-inline">
-                <%= form_tag search_group_tasks_path(group_id: 3), :method => :get, :target => "/groups/3/tasks/search" do %>
-                  <input type="text" name="q" value="<%= params[:q] %>" placeholder="Search Task" class="form-control">
-                  <!--button class="btn btn-primary" type="submit">
-                    Search
-                  </button-->
-                  <%= submit_tag "Search", class: "btn btn-primary" %>
-                <%end%>
-              </div>
-            </form>
-
-          </nav>
+      <div class="row"> 
+        <div class="col-md-12 container-fluid" id="pageTitle"">
+          <%= yield :navbar %>
         </div>
       </div>
-      <p id="notice"><%=flash[:notice]%></p>
-      <p id="alert"><%=flash[:alert]%></p>
       <div class="row" style="text-align:center">
         <div class="col-md-3"></div>
         <div class="col-md-6">

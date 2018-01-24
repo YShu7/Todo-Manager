@@ -1,0 +1,40 @@
+<% content_for :navbar do %>
+	<%= render 'navbar' %>
+<%end%>
+
+<h1>
+	<div id="pageTitle">
+		<%= "Search Results For: " %>
+		<%= @q %>
+	</div>
+</h1>
+
+<% if @tasks.empty? %>
+	<div style="font-family: 'Arial Black', Gadget, sans-serif;
+				color: red;
+				font-size: 20px;">
+		<br><%= "You don't have such tasks in the list." %>
+	</div>
+	<div style="font-size: 20px;">
+		<br><%= "Is it you forgot to add it?" %>
+		<br><%= link_to 'Create Now', new_group_task_path(group_id:3), class:"btn btn-success" %>
+		<br><br><%= "Or just leave?" %>
+		<br><%= link_to 'Homepage', root_path, class:"btn btn-primary" %>
+	</div>
+<% else %>
+	<table class = "table table-striped table-hover">
+		<tr style="font-family: 'Arial Black', Gadget, sans-serif">
+			<th>Text</th>
+			<th>Deadline</th>
+		</tr>
+		<% @tasks.each do |t| %>
+		<tr style="text-align:center">
+			<% @group = t.group.id %>
+			<td><%= link_to t.text, group_task_path(@group, t) %></td>
+			<td><%= t.ddl %></td>
+		</tr>
+		<% end %>
+	</table>
+	<br>
+	<%= link_to 'Homepage', root_path, class:"btn btn-primary btn-block" %>
+<%end%>

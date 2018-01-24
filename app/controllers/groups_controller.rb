@@ -42,6 +42,14 @@ class GroupsController < ApplicationController
         redirect_to root_path
     end
     
+    def search
+        @q = params[:q] if params[:q].present?
+        @search_criteria = {text_cont: @q}
+        if @q.present?
+            @tasks = Task.ransack(@search_criteria).result(:distinct => true)
+        end
+    end
+    
     private
     
     def set_group
