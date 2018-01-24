@@ -33451,3 +33451,154 @@ Processing by GroupTasksController#index as HTML
   Rendered group_tasks/_highlight.html.erb (0.6ms)
   Rendered group_tasks/_highlight.html.erb (0.1ms)
   Rendered group_tasks/index.html.erb within layouts/application (17.0ms)
+Started GET "/" for 127.0.0.1 at 2018-01-24 11:02:05 +0800
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GroupsController#index as HTML
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.6ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered groups/index.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 3195ms (Views: 3159.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/groups/overview" for 127.0.0.1 at 2018-01-24 11:02:14 +0800
+Processing by GroupsController#overview as HTML
+  Rendering groups/overview.html.erb within layouts/application
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[36mGroup Load (1.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered groups/overview.html.erb within layouts/application (19.2ms)
+Completed 500 Internal Server Error in 132ms (ActiveRecord: 2.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    77:                 <%= link_to "Todo-Manager", root_path %>
+    78:               </div>
+    79:             </div>
+    80:               <% @groups.each do |g| %>
+    81:                 <ul class="nav navbar-nav">
+    82:                   <li><%= link_to g.name, group_tasks_path(g) %></li>
+    83:                 </ul>
+  
+app/views/layouts/application.html.erb:80:in `_app_views_layouts_application_html_erb___3494303807888666286_70304786409600'
+Started GET "/" for 127.0.0.1 at 2018-01-24 11:02:24 +0800
+Processing by GroupsController#index as HTML
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered groups/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 122ms (Views: 117.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/groups/overview" for 127.0.0.1 at 2018-01-24 11:02:25 +0800
+Processing by GroupsController#overview as HTML
+  Rendering groups/overview.html.erb within layouts/application
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered groups/overview.html.erb within layouts/application (5.7ms)
+Completed 500 Internal Server Error in 66ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    77:                 <%= link_to "Todo-Manager", root_path %>
+    78:               </div>
+    79:             </div>
+    80:               <% @groups.each do |g| %>
+    81:                 <ul class="nav navbar-nav">
+    82:                   <li><%= link_to g.name, group_tasks_path(g) %></li>
+    83:                 </ul>
+  
+app/views/layouts/application.html.erb:80:in `_app_views_layouts_application_html_erb___3494303807888666286_70304797546500'
+Started GET "/" for 127.0.0.1 at 2018-01-24 11:03:56 +0800
+Processing by GroupsController#index as HTML
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered groups/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 106ms (Views: 99.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/groups/3/tasks" for 127.0.0.1 at 2018-01-24 11:03:57 +0800
+Processing by GroupTasksController#index as HTML
+  Parameters: {"group_id"=>"3"}
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering group_tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (1.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."group_id" = ?[0m  [["group_id", 3]]
+  Rendered group_tasks/index.html.erb within layouts/application (11.7ms)
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+Completed 200 OK in 125ms (Views: 101.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/groups/overview" for 127.0.0.1 at 2018-01-24 11:04:22 +0800
+Processing by GroupsController#overview as HTML
+  Rendering groups/overview.html.erb within layouts/application
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered groups/overview.html.erb within layouts/application (34.6ms)
+Completed 500 Internal Server Error in 102ms (ActiveRecord: 3.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    77:                 <%= link_to "Todo-Manager", root_path %>
+    78:               </div>
+    79:             </div>
+    80:               <% @groups.each do |g| %>
+    81:                 <ul class="nav navbar-nav">
+    82:                   <li><%= link_to g.name, group_tasks_path(g) %></li>
+    83:                 </ul>
+  
+app/views/layouts/application.html.erb:80:in `_app_views_layouts_application_html_erb___3494303807888666286_70304806947820'
+Started GET "/groups/overview" for 127.0.0.1 at 2018-01-24 11:05:21 +0800
+Processing by GroupsController#overview as HTML
+Completed 400 Bad Request in 7ms
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: group):
+  
+app/controllers/groups_controller.rb:49:in `group_params'
+Started GET "/groups/overview" for 127.0.0.1 at 2018-01-24 11:05:57 +0800
+Processing by GroupsController#overview as HTML
+  Rendering groups/overview.html.erb within layouts/application
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered groups/overview.html.erb within layouts/application (41.5ms)
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+Completed 200 OK in 123ms (Views: 113.2ms | ActiveRecord: 6.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-01-24 11:06:06 +0800
+Processing by GroupsController#index as HTML
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered groups/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 73ms (Views: 68.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/groups/overview" for 127.0.0.1 at 2018-01-24 11:06:09 +0800
+Processing by GroupsController#overview as HTML
+  Rendering groups/overview.html.erb within layouts/application
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered groups/overview.html.erb within layouts/application (8.2ms)
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+Completed 200 OK in 71ms (Views: 65.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-01-24 11:06:12 +0800
+Processing by GroupsController#index as HTML
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered groups/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 105ms (Views: 100.4ms | ActiveRecord: 0.3ms)
+
+
