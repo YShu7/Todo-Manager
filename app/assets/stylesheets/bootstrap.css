@@ -2644,7 +2644,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-warning:hover {
-  color: #212529;
+  color: #fff;
   background-color: #e0a800;
   border-color: #d39e00;
 }
@@ -2706,13 +2706,13 @@ fieldset:disabled a.btn {
 }
 
 .btn-light {
-  color: #212529;
+  color: #157efb;
   background-color: #f8f9fa;
   border-color: #f8f9fa;
 }
 
 .btn-light:hover {
-  color: #212529;
+  color: #157efb;
   background-color: #e2e6ea;
   border-color: #dae0e5;
 }
@@ -2917,7 +2917,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-warning:hover {
-  color: #212529;
+  color: #fff;
   background-color: #ffc107;
   border-color: #ffc107;
 }
@@ -2985,7 +2985,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-light:hover {
-  color: #212529;
+  color: #157efb;
   background-color: #f8f9fa;
   border-color: #f8f9fa;
 }

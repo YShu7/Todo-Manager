@@ -13,7 +13,7 @@ class GroupTasksController < ApplicationController
     end
     
     def new
-        @task = @group.tasks.build
+        @task = Task.new
     end
     
     def edit

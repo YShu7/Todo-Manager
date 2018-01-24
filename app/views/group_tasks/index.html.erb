@@ -11,30 +11,45 @@ PLEASE NOTE GROUP GENERAL CANNOT BE DELETED!"}, class:"btn btn-outline-danger" %
 </div><br>
 
 <%= form_tag bulk_destroy_group_tasks_path(:group_id => 0) do %>
-<table class = "table table-striped table-hover">
-	<tr style="font-family: 'Arial Black', Gadget, sans-serif">
-		<th></th>
-		<th>Text</th>
-		<th>Deadline</th>
-		<th>Action</th>
-	</tr>
-	<% @tasks.each do |t| %>
-	<tr style="text-align:center">
-		<td><%= check_box_tag "ids[]", t.id, false %></td>
-		<%= render :partial => 'highlight', :locals => {:t => t} %><br>
-		<td><%= t.ddl %></td>
-		<td>
-			<div class="btn-group">
-			<%= link_to 'Show', group_task_path(@group, t), class:"btn btn-primary" %>
-			<%= link_to 'Edit', edit_group_task_path(@group, t), class:"btn btn-outline-primary" %>
-			<%= link_to 'Delete', group_task_path(@group, t), :method => :delete, :data => {:confirm => "Are you sure to delete this task?"}, class:"btn btn-primary" %>
-			</div>
-		</td>
-	</tr>
-	<% end %>
-</table>
+	<table class = "table table-striped table-hover">
+		<tr style="font-family: 'Arial Black', Gadget, sans-serif">
+			<th></th>
+			<th>Text</th>
+			<th>Deadline</th>
+			<th>Action</th>
+		</tr>
+		
+		<% @tasks.each do |t| %>
+			<% if t.emergency == 'yes' %>
+				<tr style="text-align:center" class="bg-primary text-white">
+					<td><%= check_box_tag "ids[]", t.id, false %></td>
+					<td><%= t.text %></td>
+					<td><%= t.ddl %></td>
+					<td>
+						<div class="btn-group">
+						<%= link_to 'Show', group_task_path(@group, t), class:"btn btn-light" %>
+						<%= link_to 'Edit', edit_group_task_path(@group, t), class:"btn btn-outline-light" %>
+						<%= link_to 'Delete', group_task_path(@group, t), :method => :delete, :data => {:confirm => "Are you sure to delete this task?"}, class:"btn btn-light" %>
+					</td>
+				</tr>
+			<% else %>
+				<tr style="text-align:center">
+					<td><%= check_box_tag "ids[]", t.id, false %></td>
+					<td><%= t.text %></td>
+					<td><%= t.ddl %></td>
+					<td>
+						<div class="btn-group">
+						<%= link_to 'Show', group_task_path(@group, t), class:"btn btn-primary" %>
+						<%= link_to 'Edit', edit_group_task_path(@group, t), class:"btn btn-outline-primary" %>
+						<%= link_to 'Delete', group_task_path(@group, t), :method => :delete, :data => {:confirm => "Are you sure to delete this task?"}, class:"btn btn-primary" %>
+					</td>
+			<% end %>
+				
+			
+		<% end %>
+	</table>
 
-<br><%= link_to 'Create', new_group_task_path, class:"btn btn-success btn-block" %>
-<br><%= submit_tag 'Delete', class:"btn btn-danger btn-block", :data => {:confirm => "Are you sure to delete the selected tasks?"} %>
-<br><%= link_to 'Back', root_path, class:"btn btn-primary btn-block" %>
+	<br><%= link_to 'Create', new_group_task_path, class:"btn btn-success btn-block" %>
+	<br><%= submit_tag 'Delete', class:"btn btn-danger btn-block", :data => {:confirm => "Are you sure to delete the selected tasks?"} %>
+	<br><%= link_to 'Back', root_path, class:"btn btn-primary btn-block" %>
 <%end%>

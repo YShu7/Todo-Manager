@@ -13,23 +13,27 @@
 		<th>Action</th>
 	</tr>
 	<% @tasks.each do |t|%>
-	<tr style="text-align:center"> 
+		<% if t.emergency == 'yes' %>
+			<tr style="text-align:center" class="alert alert-primary">
+		<% else %>
+			<tr style="text-align:center">
+		<% end %> 
 		<% group=Group.find(t.group_id) %>
 		<td><%= check_box_tag "ids[]", t.id, false %></td>
 		<td><%= t.text %></td>
 		<td style="font-weight:bold" ><%= group.name%></td>
 		<td>
 			<div class="btn-group">
-			<%= link_to 'Show', group_task_path(group, t), class:"btn btn-info" %>
-			<%= link_to 'Edit', edit_group_task_path(group, t), class:"btn btn-warning" %>
-			<%= link_to 'Delete', group_task_path(group, t), :method => :delete, :data => {:confirm => "Are you sure to delete this task?"}, class:"btn btn-danger" %>
+			<%= link_to 'Show', group_task_path(group, t), class:"btn btn-primary" %>
+			<%= link_to 'Edit', edit_group_task_path(group, t), class:"btn btn-outline-primary" %>
+			<%= link_to 'Delete', group_task_path(group, t), :method => :delete, :data => {:confirm => "Are you sure to delete this task?"}, class:"btn btn-primary" %>
 			</div>
 		</td>
 	</tr>
 	<% end %>
 </table>
 
-<br><%= link_to 'Create', new_group_task_path(:group_id => 1), class:"btn btn-success btn-block" %>
+<br><%= link_to 'Create', new_group_task_path(:group_id => 3), class:"btn btn-success btn-block" %>
 <br><%= submit_tag 'Delete', class:"btn btn-danger btn-block", :data => {:confirm => "Are you sure?"} %>
 <br><%= link_to 'Homepage', root_path, class:"btn btn-primary btn-block"  %>
 <%end%>

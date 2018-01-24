@@ -7,9 +7,11 @@
 <div id="form_head"><%= f.label :group, "Group" %></div><br>
 <%= f.collection_select(:group_id, Group.all, :id, :name) %><br>
 
-<div id="form_head", style="color:red">
-<%= check_box_tag :emergency %>
-<%= label_tag(:emergency, "Emergency") %></div>
+<div id="form_head"><%= "Is it an urgent task?" %></div><br>
+<%= f.radio_button(:emergency, "yes") %>
+<%= f.label(:emergency, "Yes") %>
+<%= f.radio_button(:emergency, "no") %>
+<%= f.label(:emergency, "No") %>
 
 <% if @task.errors.any? %>
 	<ul class="alert alert-danger">
@@ -18,13 +20,3 @@
 	<% end %>
 	</ul>
 <% end %>
-
-<script type="text/javascript">
-	$("emergency").click(function(){
-    if($(this).attr("checked")==true){
-        @checked = '1';
-    }else{
-        @checked = '0';
-    }
-	)};
-</script>
