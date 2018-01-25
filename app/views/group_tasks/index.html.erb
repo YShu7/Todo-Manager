@@ -44,9 +44,8 @@ PLEASE NOTE GROUP GENERAL CANNOT BE DELETED!"}, class:"btn btn-outline-danger" %
 						<%= link_to 'Delete', group_task_path(@group, t), :method => :delete, :data => {:confirm => "Are you sure to delete this task?"}, class:"btn btn-primary" %>
 					</td>
 			<% end %>
-				
-			
 		<% end %>
+		
 	</table>
 
 	<br><%= link_to 'Create', new_group_task_path, class:"btn btn-success btn-block" %>

@@ -17,6 +17,8 @@
 			<tr style="text-align:center" class="alert alert-primary">
 		<% else %>
 			<tr style="text-align:center">
+				<td style="font-weight:bold" ><%= group.name%></td>
+				<td>
 		<% end %> 
 		<% group=Group.find(t.group_id) %>
 		<td><%= check_box_tag "ids[]", t.id, false %></td>
@@ -27,10 +29,8 @@
 			<%= link_to 'Show', group_task_path(group, t), class:"btn btn-primary" %>
 			<%= link_to 'Edit', edit_group_task_path(group, t), class:"btn btn-outline-primary" %>
 			<%= link_to 'Delete', group_task_path(group, t), :method => :delete, :data => {:confirm => "Are you sure to delete this task?"}, class:"btn btn-primary" %>
-			</div>
-		</td>
-	</tr>
 	<% end %>
+			
 </table>
 
 <br><%= link_to 'Create', new_group_task_path(:group_id => 3), class:"btn btn-success btn-block" %>
