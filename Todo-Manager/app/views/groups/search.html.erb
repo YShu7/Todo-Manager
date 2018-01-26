@@ -19,7 +19,7 @@
 		<br><%= "Is it you forgot to add it?" %>
 		<br><%= link_to 'Create Now', new_group_task_path(group_id:3), class:"btn btn-success" %>
 		<br><br><%= "Or just leave?" %>
-		<br><%= link_to 'Homepage', root_path, class:"btn btn-primary" %>
+		<br><%= link_to 'Homepage', groups_path, class:"btn btn-primary" %>
 	</div>
 <% else %>
 	<table class = "table table-striped table-hover">
@@ -36,5 +36,5 @@
 		<% end %>
 	</table>
 	<br>
-	<%= link_to 'Homepage', root_path, class:"btn btn-primary btn-block" %>
+	<%= link_to 'Homepage', groups_path, class:"btn btn-primary btn-block" %>
 <%end%>

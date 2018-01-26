@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
     # index, show, new, edit, create, update and destroy
     before_action :set_group, :only => [:edit, :update, :destroy]
     before_action :set_groups_and_search
+    before_action :authenticate_user!, :except => :index
     def index
         @groups = Group.all
     end
@@ -20,15 +21,19 @@ class GroupsController < ApplicationController
     
     def create
         @group = Group.new(group_params)
-        @group.save
-        
-        redirect_to root_path
+        if @group.save
+            redirect_to :action => :index
+        else
+        render :action => :new
+        end
     end
     
     def update
-        @group.update(group_params)
-        
-        redirect_to group_tasks_path(@group.id)
+        if @group.update(group_params)
+            redirect_to group_tasks_path(@group.id)
+        else
+        render :action => :edit, :id => @group
+        end
     end
     
     def destroy
@@ -39,7 +44,7 @@ class GroupsController < ApplicationController
             flash[:alert] = "Group " + @group.name + " was successfully deleted!"
         end
         
-        redirect_to root_path
+        redirect_to groups_path
     end
     
     def search

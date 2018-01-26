@@ -3,6 +3,7 @@ class GroupTasksController < ApplicationController
     before_action :set_group, :except => :bulk_destroy
     before_action :set_task, :only => [:show, :edit, :update, :destroy]
     before_action :set_search
+    before_action :authenticate_user!
 
     def index
         @tasks = @group.tasks
@@ -31,7 +32,7 @@ class GroupTasksController < ApplicationController
     def update
         if @task.update(task_params)
             redirect_to :action => :index
-            else
+        else
             render :action => :edit, :id => @task
         end
     end
