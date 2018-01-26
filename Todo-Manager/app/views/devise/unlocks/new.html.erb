@@ -8,9 +8,10 @@
         <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, class: 'form-control' %>
       </div>
+      <%= devise_error_messages!%>
+
       <%= f.submit t('.resend_unlock_instructions', default: 'Resend unlock instructions'), class: 'btn btn-primary'%>
     <% end %>
   </div>
 </div>
-<%= devise_error_messages!%>
 <%= render 'devise/shared/links' %>

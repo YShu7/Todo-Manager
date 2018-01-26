@@ -15,10 +15,11 @@
         <%= f.label :password_confirmation, t('.confirm_new_password', default: 'Confirm new password') %>
         <%= f.password_field :password_confirmation, class: 'form-control'  %>
       </div>
+      <%= devise_error_messages!%>
 
       <%= f.submit t('.change_my_password', default: 'Change my password'), class: 'btn btn-primary' %>
     <% end %>
   </div>
 </div>
-<%= devise_error_messages!%>
+
 <%= render 'devise/shared/links' %>

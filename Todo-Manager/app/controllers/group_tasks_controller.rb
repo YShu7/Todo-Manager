@@ -22,6 +22,7 @@ class GroupTasksController < ApplicationController
     
     def create
         @task = @group.tasks.build(task_params)
+        @task.user = current_user
         if @task.save
             redirect_to :action => :index
         else
@@ -60,8 +61,8 @@ class GroupTasksController < ApplicationController
     end
     
     def set_group
-        @groups = Group.all
         @group = Group.find(params[:group_id])
+        @groups = current_user.groups
         @head = @group.name
     end
     

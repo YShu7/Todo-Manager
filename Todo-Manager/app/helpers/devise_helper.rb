@@ -16,7 +16,9 @@ module DeviseHelper
                       resource: resource.class.model_name.human.downcase)
 
     html = <<-HTML
-    <div class="alert alert-danger">
+    <br>
+    <div class="alert alert-danger"
+    style="font-family: Arial, Helvetica, sans-serif; font-size: 17px;">
       <ul>#{messages}</ul>
     </div>
     HTML

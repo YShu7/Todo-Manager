@@ -5,7 +5,7 @@
 <%= f.date_select :ddl, :order => [:day, :month, :year]%><br>
 
 <div id="form_head"><%= f.label :group, "Group" %></div><br>
-<%= f.collection_select(:group_id, Group.all, :id, :name) %><br>
+<%= f.collection_select(:group_id, current_user.groups, :id, :name) %><br>
 
 <div id="form_head"><%= "Is it an urgent task?" %></div><br>
 <%= f.radio_button(:emergency, "yes") %>

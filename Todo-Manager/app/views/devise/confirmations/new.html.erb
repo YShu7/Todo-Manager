@@ -8,12 +8,11 @@
         <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, class: "form-control"  %>
       </div>
+      <%= devise_error_messages!%>
 
       <%= f.submit t('.resend_confirmation_instructions', default: 'Resend confirmation instructions'), class: 'btn btn-primary' %>
     <% end %>
   </div>
 </div>
 
-<%= devise_error_messages!%>
-<br><br>
 <%= render 'devise/shared/links' %>

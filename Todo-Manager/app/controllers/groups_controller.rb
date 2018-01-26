@@ -1,15 +1,17 @@
 class GroupsController < ApplicationController
     # index, show, new, edit, create, update and destroy
+    before_action :authenticate_user!
+    before_action :set_groups
     before_action :set_group, :only => [:edit, :update, :destroy]
     before_action :set_groups_and_search
-    before_action :authenticate_user!, :except => :index
+
+    
     def index
-        @groups = Group.all
     end
     
     def overview
         @q = Task.ransack(params[:q])
-        @tasks = Task.all
+        @tasks = current_user.tasks
     end
     
     def new
@@ -21,10 +23,11 @@ class GroupsController < ApplicationController
     
     def create
         @group = Group.new(group_params)
+        @group.user = current_user
         if @group.save
             redirect_to :action => :index
         else
-        render :action => :new
+            render :action => :new
         end
     end
     
@@ -32,7 +35,7 @@ class GroupsController < ApplicationController
         if @group.update(group_params)
             redirect_to group_tasks_path(@group.id)
         else
-        render :action => :edit, :id => @group
+            render :action => :edit, :id => @group
         end
     end
     
@@ -66,7 +69,10 @@ class GroupsController < ApplicationController
     end
     
     def set_groups_and_search
-        @groups = Group.all
         @q = Task.ransack(params[:q])
+    end
+    
+    def set_groups
+        @groups = current_user.groups
     end
 end

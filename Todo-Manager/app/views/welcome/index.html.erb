@@ -1,5 +1,29 @@
+<% content_for :navbar do %>
+	<%= render 'navbar' %>
+<%end%>
+
 <% if current_user %>
-	<% redirect_to groups_path  %>
+	<div id="welcome">
+		<br>
+		<%= "Welcome Back!"%>
+		<br><br>
+		<%= "You have signed in as " + current_user.email %>
+		<br><br>
+		<div class="alert alert-success">
+		<%= "Please note you MUST have at least one group before creating a task."%>
+		</div>
+		<br>
+		<%= link_to 'View Your Task Groups', groups_path, class:"btn btn-primary"  %>
+
+	</div>
 <% else %>
-	<%= "welcome "%>
+	<div id="welcome">
+		<br>
+		<%= "Please sign in to enjoy your journey with"%>
+		<br><br>
+		<div style="font-size: 30px;"><%= "Todo-Mangager!" %></div>
+      		<br><br>
+		<%= link_to'Sign up', new_registration_path(:user), class:"btn btn-success" %>
+      		<%= link_to'Log in', new_session_path(:user), class:"btn btn-primary" %>
+	</div>
 <% end %>
