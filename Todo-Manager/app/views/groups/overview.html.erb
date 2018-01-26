@@ -46,7 +46,7 @@
 			
 </table>
 
-<br><%= link_to 'Create', new_group_task_path(:group_id => 3), class:"btn btn-success btn-block" %>
+<br><%= link_to 'Create', new_group_task_path(Group.first), class:"btn btn-success btn-block" %>
 <br><%= submit_tag 'Delete', class:"btn btn-danger btn-block", :data => {:confirm => "Are you sure?"} %>
 <br><%= link_to 'Homepage', root_path, class:"btn btn-primary btn-block"  %>
 <%end%>

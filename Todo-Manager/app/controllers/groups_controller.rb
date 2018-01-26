@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
     end
     
     def destroy
-        if @group.id == 3
+        if @group.id == Group.first.id
             flash[:alert] = "Group " + @group.name + " cannot be deleted."
         else
             @group.destroy

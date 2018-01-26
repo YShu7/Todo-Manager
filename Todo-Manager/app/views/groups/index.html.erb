@@ -11,6 +11,6 @@
 <% end %>
 </div>
 
-<br><%= link_to 'View All Tasks', overview_groups_path, class: "btn btn-primary btn-block" %>
 <br><%= link_to 'Create a New Group', new_group_path, class: "btn btn-success btn-block"%>
-<br><%= link_to 'Create a New Task', new_group_task_path(:group_id => 3), class: "btn btn-success btn-block"%>
+<br><%= link_to 'Create a New Task', new_group_task_path(Group.first), class: "btn btn-success btn-block"%>
+<br><%= link_to 'View All Tasks', overview_groups_path, class: "btn btn-primary btn-block" %>
