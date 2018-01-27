@@ -22,8 +22,8 @@ class GroupsController < ApplicationController
     end
     
     def create
-        @group = Group.new(group_params)
-        @group.user = current_user
+        @group = current_user.groups.build(group_params)
+        #@group.user = current_user
         if @group.save
             redirect_to :action => :index
         else
@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
     end
     
     def destroy
-        if @group.id == Group.first.id
+        if @group.id == current_user.groups.first.id
             flash[:alert] = "Group " + @group.name + " cannot be deleted."
         else
             @group.destroy
@@ -65,7 +65,7 @@ class GroupsController < ApplicationController
     end
     
     def group_params
-        params.require(:group).permit(:name)
+        params.require(:group).permit(:name, :user_id)
     end
     
     def set_groups_and_search

@@ -24,7 +24,7 @@ class GroupTasksController < ApplicationController
         @task = @group.tasks.build(task_params)
         @task.user = current_user
         if @task.save
-            redirect_to :action => :index
+            redirect_to group_tasks_path(@group)
         else
             render :action => :new
         end
@@ -57,7 +57,7 @@ class GroupTasksController < ApplicationController
     private
     
     def task_params
-        params.require(:task).permit(:text, :group_id, :ddl, :emergency)
+        params.require(:task).permit(:text, :group_id, :ddl, :emergency, :user_id)
     end
     
     def set_group
