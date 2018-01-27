@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
     end
     
     def new
-        @group = Group.new
+        @group = current_user.groups.build
     end
     
     def edit
@@ -25,7 +25,7 @@ class GroupsController < ApplicationController
         @group = current_user.groups.build(group_params)
         @group.user = current_user
         if @group.save
-            redirect_to root_path
+            redirect_to :action => :index
         else
             render :action => :new
         end
