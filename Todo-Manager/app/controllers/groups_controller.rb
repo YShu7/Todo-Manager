@@ -23,9 +23,9 @@ class GroupsController < ApplicationController
     
     def create
         @group = current_user.groups.build(group_params)
-        #@group.user = current_user
+        @group.user = current_user
         if @group.save
-            redirect_to :action => :index
+            redirect_to root_path
         else
             render :action => :new
         end
