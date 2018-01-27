@@ -17,12 +17,13 @@
       <%= link_to'Log in', new_session_path(:user) %>
     </div>
   <% end %>
-  <ul class="nav navbar-nav">
-    <% @groups.each do |g| %>
-      <% if g.id %>
+  
+  <% @groups.each do |g| %>
+    <% if g.id %>
+      <ul class="nav navbar-nav">
         <li><%= link_to g.name, group_tasks_path(g) %></li>
-      <% end %> 
-  </ul>
+      </ul>
+    <% end %> 
   <%end%>
   
   <div class="form-inline">
