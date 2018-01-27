@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @head || "Todo Manager" %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      #header {
+        background-color: #157efb;
+        color: white;
+        padding: 5px;
+        line-height: 60px;
+        font-size: 50px;
+        font-family: 'Arial Black', Gadget, sans-serif;
+        text-align: center;
+        font-variant: small-caps;
+        top: 0px;
+      }
+      #pageTitle {
+        text-align: center;
+        color: #157efb;
+        font-family: 'Arial Black', Gadget, sans-serif;
+        font-variant: small-caps;
+      }
+      #text {
+        line-height: 60px;
+      }
+      #details {
+        line-height: 60px;
+        text-align: center;
+        font-size: 30px;
+      }
+      #alert {
+        color: red;
+        text-align: center;
+        font-family: 'Arial Black', Gadget, sans-serif;
+      }
+      #notice {
+        color: green;
+        text-align: center;
+        font-family: 'Arial Black', Gadget, sans-serif;
+      }
+      #form_head {
+        color: #157efb;
+        line-height: 20px;
+        font-size: 20px;
+        position: relative;
+        bottom: -20px;
+        font-family: 'Arial Black', Gadget, sans-serif;
+      }
+      #user {
+        line-height: 20px;
+        top: -30px;
+        background-color: #157efb;
+        color: white;
+      }
+      #welcome {
+        font-family: 'Arial Black', Gadget, sans-serif; 
+        color: #157efb;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="main-container" class="container-fluid" >
+      <div class="row"> 
+        <div class="col-md-12" id="header"> Todo Manager </div>
+      </div>
+      <div class="row"> 
+        <div class="col-md-12 container-fluid" id="pageTitle"">
+          <%= yield :navbar %>
+          <p id="notice"><%=flash[:notice]%></p>
+          <p id="alert"><%=flash[:alert]%></p>
+        </div>
+      </div>
+      <div class="row" style="text-align:center">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <%= yield %>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </body>
+</html>

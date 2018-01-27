@@ -1,0 +1,13 @@
+<% content_for :navbar do %>
+	<%= render 'navbar' %>
+<%end%>
+
+<%= form_for [@group, @task] do |f| %> 
+
+	<%= render :partial => 'form', :locals => {:f => f} %><br>
+	<br>
+	<%= f.submit "Create", class: " btn btn-success btn-block" %>
+
+<% end %> 
+
+<br><%= link_to 'Homepage', groups_path, class: " btn btn-primary btn-block" %>

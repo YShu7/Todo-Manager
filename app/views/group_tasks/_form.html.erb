@@ -1,0 +1,22 @@
+<div id="form_head"><%= f.label :text, "Your task" %></div><br>
+<%= f.text_area :text, class: "form-control" %><br>
+
+<div id="form_head"><%= f.label :ddl, "Deadline" %></div><br>
+<%= f.date_select :ddl, :order => [:day, :month, :year]%><br>
+
+<div id="form_head"><%= f.label :group, "Group" %></div><br>
+<%= f.collection_select(:group_id, current_user.groups, :id, :name) %><br>
+
+<div id="form_head"><%= "Is it an urgent task?" %></div><br>
+<%= f.radio_button(:emergency, "yes") %>
+<%= f.label(:emergency, "Yes") %>
+<%= f.radio_button(:emergency, "no") %>
+<%= f.label(:emergency, "No") %>
+
+<% if @task.errors.any? %>
+	<ul class="alert alert-danger">
+	<% @task.errors.full_messages.each do |msg| %>
+		<li> <%= msg %> </li>
+	<% end %>
+	</ul>
+<% end %>
