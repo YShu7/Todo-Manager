@@ -17,8 +17,9 @@ module TodoManager
     :port => 25,
     :domain => "gmail.com",
     :authentication => :login,
-    :user_name => "shu7yang@gmail.com",
-    :password => "990208YangShuqi"
+    :user_name => "TodoManagerPswd@gmail.com",
+    :password => "990208Todo"
+    }
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
