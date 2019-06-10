@@ -10,10 +10,10 @@ gem 'less-rails', '~> 3.0'
 #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 
-gem 'bootstrap'
+gem "bootstrap", ">= 4.3.1"
 gem 'ransack', '~> 1.8', '>= 1.8.6'
 gem 'railties', '~> 5.0', '>= 5.0.0.1'
-gem 'devise'
+gem "devise", ">= 4.6.0"
 gem 'devise-bootstrap-views' 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
